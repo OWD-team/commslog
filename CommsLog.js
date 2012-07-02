@@ -19,7 +19,9 @@ var CommsLogService = {
   init: function cls_init() {
 
     //Open the database
-    this._openreq = mozIndexedDB.open(this.DBNAME, this.DBVERSION);
+    var indexedDB = window.indexedDB || window.webkitIndexedDB || 
+                    window.msIndexedDB;
+    this._openreq = indexedDB.open(this.DBNAME, this.DBVERSION);
 
     this._openreq.onsuccess = (function dbOnSuccess() {
       this._logsDB = this._openreq.result;
